@@ -9,4 +9,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'angular-peliculas';
+  apellido = 'De Jesús';
+  edad = 100;
+  pelicula = {
+    titulo: "Spider-Man",
+    fecha_lanzamiento: new Date()
+  }
+
+  saludar(nombre: string): string {
+    return `Saludos ${nombre}`
+  }
 }
