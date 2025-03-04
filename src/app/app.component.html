@@ -1,4 +1,8 @@
 <h1>Datos de la película</h1>
 
-<p>Nombre: {{ pelicula.titulo }}</p>
-<p>Fecha lanzamiento: {{ pelicula.fecha_lanzamiento }}</p>
+<p>Nombre: {{ pelicula.titulo | uppercase   }}</p>
+
+<!--Los pipes pueden recibir argumentos-->
+<p>Fecha lanzamiento: {{ pelicula.fecha_lanzamiento | date:"dd-MMMM-yyyy" | uppercase}}</p>
+
+<p>Precio: {{pelicula.precio | currency}}</p>

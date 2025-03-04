@@ -1,9 +1,14 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UpperCasePipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+
+// Los Pipes convierten data de un formato a otro
+// En este caso se utilizan con la fecha usando DatePipe
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [DatePipe, UpperCasePipe, CurrencyPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -13,7 +18,8 @@ export class AppComponent {
   edad = 100;
   pelicula = {
     titulo: "Spider-Man",
-    fecha_lanzamiento: new Date()
+    fecha_lanzamiento: new Date(),
+    precio: 1400.99,
   }
 
   saludar(nombre: string): string {
