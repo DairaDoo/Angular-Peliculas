@@ -1,29 +1,19 @@
-<h1>Implementación clásica usando el *NgFor</h1>
+<h1>Datos de las películas</h1>
 
-<!--NgFor para iterar sobre cada elemento de una colección y hacer algo con el-->
-<div *ngFor="let pelicula of peliculas; let indice = index">
-  <p>{{ indice }}) Nombre: {{ pelicula.titulo | uppercase }}</p>
-
-  <!--Los pipes pueden recibir argumentos-->
-  <p>
-    Fecha lanzamiento:
-    {{ pelicula.fecha_lanzamiento | date : "dd-MMMM-yyyy" | uppercase }}
-  </p>
-
-  <p>Precio: {{ pelicula.precio | currency }}</p>
-</div>
-
-<h1>Implementación moderna con el For</h1>
-@for (pelicula of peliculas; track $index) {
-    <div>
+@for(pelicula of peliculas; track $index) {
+  <div class="contenedor-pelicula">
+    <div style="display: flex; flex-direction: row; gap: 10px">
+      <div>
+        <img [ngSrc]="pelicula.poster" [priority]="$index === 0" width="169" height="250">
+      </div>
+      <div>
         <p>{{ $index }}) Nombre: {{ pelicula.titulo | uppercase }}</p>
-
-        <!--Los pipes pueden recibir argumentos-->
         <p>
-            Fecha lanzamiento:
-            {{ pelicula.fecha_lanzamiento | date : "dd-MMMM-yyyy" | uppercase }}
+          Fecha lanzamiento:
+          {{ pelicula.fecha_lanzamiento | date : "dd-MMMM-yyyy" | uppercase }}
         </p>
-
         <p>Precio: {{ pelicula.precio | currency }}</p>
+      </div>
     </div>
+  </div>
 }
