@@ -57,4 +57,8 @@ export class AppComponent implements OnInit{
   peliculasEnCines!: any[];
   peliculasProximosEstrenos!: any[];
 
+  mostrarVotoSeleccionado(voto: number) {
+    alert(`Voto seleccionado: ${voto}`);
+  }
+
 }
