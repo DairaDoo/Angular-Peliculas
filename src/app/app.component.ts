@@ -5,7 +5,7 @@ import { RatingComponent } from "./compartidos/componentes/rating/rating.compone
 
 @Component({
   selector: 'app-root',
-  imports: [ListadoPeliculasComponent, MenuComponent, RatingComponent],
+  imports: [ListadoPeliculasComponent, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

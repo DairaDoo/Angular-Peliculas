@@ -1,14 +1,14 @@
 <app-menu></app-menu>
 
-<app-rating [maximoRating]="5" (votoSeleccionado)="mostrarVotoSeleccionado($event)"></app-rating>
 
-<h2>En Cines</h2>
+<div class="contenedor">
 
-<app-listado-peliculas [peliculas]="peliculasEnCines"/>
+    <h2>En Cines</h2>
 
-<h2>Próximos Estrenos</h2>
+    <app-listado-peliculas [peliculas]="peliculasEnCines"/>
 
-<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"/>
+    <h2>Próximos Estrenos</h2>
 
+    <app-listado-peliculas [peliculas]="peliculasProximosEstrenos"/>
 
-
+</div>
