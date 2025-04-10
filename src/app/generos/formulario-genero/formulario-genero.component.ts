@@ -1,21 +1,23 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { GeneroCreacionDTO, GeneroDTO } from '../generos';
+import { MapaComponent } from "../../compartidos/componentes/mapa/mapa.component";
+import { Coordenada } from '../../compartidos/componentes/mapa/Coordenada';
 
 @Component({
   selector: 'app-formulario-genero',
   imports: [
-      MatButtonModule,
-      RouterLink,
-      MatFormFieldModule,
-      ReactiveFormsModule,
-      MatInputModule,
-    ],
+    MatButtonModule,
+    RouterLink,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+],
   templateUrl: './formulario-genero.component.html',
   styleUrl: './formulario-genero.component.css',
 })
@@ -35,11 +37,8 @@ export class FormularioGeneroComponent implements OnInit {
   private formbuilder = inject(FormBuilder);
 
   form = this.formbuilder.group({
-    nombre: [
-      '',
-      { validators: [Validators.required, primeraLetraMayuscula()] },
-    ],
-  });
+    nombre: ['', {validators: [Validators.required, primeraLetraMayuscula()]}],
+  })
 
   obtenerErrorCampoNombre(): string {
     let nombre = this.form.controls.nombre;
@@ -54,6 +53,7 @@ export class FormularioGeneroComponent implements OnInit {
 
     return '';
   }
+
 
   guardarCambios() {
 
