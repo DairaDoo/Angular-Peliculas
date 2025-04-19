@@ -28,6 +28,15 @@ export class EditarPeliculaComponent {
   generosNoSeleccionados: SelectorMultipleDTO[] = [
     {llave: 1, valor: 'Drama'},
     {llave: 3, valor: 'Comedia'}
+  ]
+
+  cinesSeleccionados: SelectorMultipleDTO[] = [
+    {llave: 2, valor: 'Blue Mall'}
+  ];
+
+  cinesNoSeleccionados: SelectorMultipleDTO[] = [
+    {llave: 1, valor: 'Agora Mall'},
+    {llave: 3, valor: 'Acropolis'}
 
   ]
 

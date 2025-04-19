@@ -45,6 +45,12 @@ export class FormularioPeliculasComponent implements OnInit{
     @Input({required: true})
     generosSeleccionados!: SelectorMultipleDTO[];
 
+    @Input({required: true})
+    cinesNoSeleccionados!: SelectorMultipleDTO[];
+
+    @Input({required: true})
+    cinesSeleccionados!: SelectorMultipleDTO[];
+
 
   @Input()
   modelo?: PeliculaDTO;
@@ -78,6 +84,9 @@ export class FormularioPeliculasComponent implements OnInit{
 
     const generosIds = this.generosSeleccionados.map(val => val.llave);
     pelicula.generosIds = generosIds;
+
+    const cinesIds = this.cinesSeleccionados.map(val => val.llave);
+    pelicula.cinesIds = cinesIds;
 
     this.posteoFormulario.emit(pelicula);
   }
