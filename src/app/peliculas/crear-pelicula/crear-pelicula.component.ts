@@ -3,6 +3,7 @@ import { PeliculaCreacionDTO } from '../peliculas';
 import { FormularioActoresComponent } from "../../actores/formulario-actores/formulario-actores.component";
 import { FormularioPeliculasComponent } from "../formulario-peliculas/formulario-peliculas.component";
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
+import { ActorAutoCompleteDTO } from '../../actores/actores';
 
 @Component({
   selector: 'app-crear-pelicula',
@@ -30,6 +31,7 @@ export class CrearPeliculaComponent {
 
   ]
 
+  actoresSeleccionados: ActorAutoCompleteDTO[] = [];
 
   guardarCambios(pelicula: PeliculaCreacionDTO) {
     console.log('Creando película', pelicula)

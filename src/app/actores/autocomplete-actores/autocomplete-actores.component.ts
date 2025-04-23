@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,10 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { ActorAutoCompleteDTO } from '../actores';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-autocomplete-actores',
-  imports: [MatAutocompleteModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule, FormsModule, MatTableModule, MatInputModule],
+  imports: [MatAutocompleteModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule, FormsModule, MatTableModule, MatInputModule, DragDropModule],
   templateUrl: './autocomplete-actores.component.html',
   styleUrl: './autocomplete-actores.component.css'
 })
@@ -37,6 +38,7 @@ export class AutocompleteActoresComponent {
     },
   ]
 
+  @Input({required: true})
   actoresSeleccionados: ActorAutoCompleteDTO[] = [];
 
   columnasAMostrar = ['imagen', 'nombre', 'personaje', 'acciones'];
@@ -51,6 +53,12 @@ export class AutocompleteActoresComponent {
       this.table.renderRows();
     }
 
+  }
+
+  finalizarArrastre(event: CdkDragDrop<any[]>) {
+    const indicePrevio = this.actoresSeleccionados.findIndex(actor => actor === event.item.data);
+    moveItemInArray(this.actoresSeleccionados, indicePrevio, event.currentIndex)
+    this.table.renderRows();
   }
 
   eliminar(actor: ActorAutoCompleteDTO) {

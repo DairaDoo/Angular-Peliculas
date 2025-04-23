@@ -2,6 +2,7 @@ import { Component, Input, numberAttribute } from '@angular/core';
 import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
 import { FormularioPeliculasComponent } from "../formulario-peliculas/formulario-peliculas.component";
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
+import { ActorAutoCompleteDTO } from '../../actores/actores';
 
 @Component({
   selector: 'app-editar-pelicula',
@@ -38,6 +39,15 @@ export class EditarPeliculaComponent {
     {llave: 1, valor: 'Agora Mall'},
     {llave: 3, valor: 'Acropolis'}
 
+  ]
+
+  actoresSeleccionados: ActorAutoCompleteDTO[] = [
+    {
+      id: 1,
+      nombre: 'Tom Cruise',
+      personaje: 'Pete Mitchell',
+      foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tom_Cruise_by_Gage_Skidmore_2.jpg/330px-Tom_Cruise_by_Gage_Skidmore_2.jpg'
+    }
   ]
 
   guardarCambios(pelicula: PeliculaCreacionDTO) {
