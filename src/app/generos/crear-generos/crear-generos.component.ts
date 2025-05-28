@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
 import { FormularioGeneroComponent } from "../formulario-genero/formulario-genero.component";
 import { GeneroCreacionDTO } from '../generos';
+import { GenerosService } from '../generos.service';
 
 @Component({
   selector: 'app-crear-generos',
@@ -15,12 +16,17 @@ import { GeneroCreacionDTO } from '../generos';
   styleUrl: './crear-generos.component.css',
 })
 export class CrearGenerosComponent {
+
   private router = inject(Router);
+  private generosService = inject(GenerosService);
 
   guardarCambios(genero: GeneroCreacionDTO) {
-    // ... simulamos guardar los cambios
-    // this.router.navigate(['/generos']);
-    console.log('Creando el genero: ', genero);
+
+    // ... guardar los cambios
+
+    this.generosService.crear(genero).subscribe(() => {
+      this.router.navigate(['/generos']);
+    });
 
   }
 }
