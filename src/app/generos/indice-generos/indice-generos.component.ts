@@ -6,10 +6,13 @@ import { environment } from '../../../environments/environment';
 import { GeneroDTO } from '../generos';
 import { MatTableModule } from '@angular/material/table';
 import { ListadoGenericoComponent } from "../../compartidos/componentes/listado-generico/listado-generico.component";
+import { HttpResponse } from '@angular/common/http';
+import { PaginacionDTO } from '../../compartidos/modelos/PaginacionDTO';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-indice-generos',
-  imports: [RouterLink, MatButtonModule, MatTableModule, ListadoGenericoComponent],
+  imports: [RouterLink, MatButtonModule, MatTableModule, ListadoGenericoComponent, MatPaginatorModule],
   templateUrl: './indice-generos.component.html',
   styleUrl: './indice-generos.component.css'
 })
@@ -17,10 +20,25 @@ export class IndiceGenerosComponent {
   generosService = inject(GenerosService);
   generos!: GeneroDTO[];
   columnasAMostrar = ["id", "nombre", "acciones"];
+  paginacion: PaginacionDTO = {pagina: 1, recordsPorPagina: 5}
+  cantidadTotalRegistros!: number;
 
   constructor() {
-    this.generosService.obtenerTodos().subscribe(generos => {
-      this.generos = generos;
+    this.cargarRegistros();
+  }
+
+  cargarRegistros() {
+    this.generosService.obtenerPaginado(this.paginacion).subscribe((respuesta: HttpResponse<GeneroDTO[]>) => {
+      this.generos = respuesta.body as GeneroDTO[];
+      const cabecera = respuesta.headers.get("cantidad-total-registros") as string;
+      this.cantidadTotalRegistros = parseInt(cabecera, 10);
     })
   }
+
+  actualizarPaginacion(datos: PageEvent) {
+    this.paginacion = {pagina: datos.pageIndex + 1, recordsPorPagina: datos.pageSize};
+    this.cargarRegistros();
+  }
+
+
 }
