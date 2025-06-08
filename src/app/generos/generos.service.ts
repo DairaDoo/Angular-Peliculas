@@ -33,4 +33,8 @@ export class GenerosService {
    public crear(genero: GeneroCreacionDTO) {
     return this.http.post(this.urlBase, genero);
    }
+
+   public borrar(id: number) {
+    return this.http.delete(`${this.urlBase}/${id}`);
+   }
 }
