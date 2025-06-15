@@ -35,6 +35,10 @@ export class ActoresService {
     return this.http.post(this.urlBase, formData);
   }
 
+  public borrar(id: number) {
+    return this.http.delete(`${this.urlBase}/${id}`);
+  }
+
   private construirFormData(actor: ActorCreacionDTO): FormData {
     const formData = new FormData();
 

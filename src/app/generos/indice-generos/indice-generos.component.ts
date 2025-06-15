@@ -57,7 +57,7 @@ export class IndiceGenerosComponent {
 
   borrar(id: number) {
     this.generosService.borrar(id).subscribe(() => {
-      this.paginacion = { pagina: 1, recordsPorPagina: 5 };
+      this.paginacion.pagina = 1;
       return this.cargarRegistros();
     });
   }
