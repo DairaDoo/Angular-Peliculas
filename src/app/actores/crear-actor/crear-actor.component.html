@@ -1,5 +1,5 @@
-<h2>Crear Actor</h2>
-
-<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
-
-<app-formulario-actores (posteoFormulario)="guardarCambios($event)"></app-formulario-actores>
+<app-crear-entidad
+  rutaIndice="/actores"
+  titulo="Crear Actor"
+  [formulario]="formularioActores"
+></app-crear-entidad>
