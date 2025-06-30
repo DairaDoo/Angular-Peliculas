@@ -18,6 +18,10 @@ export class PeliculasService {
     return this.http.get<LandingPageDTO>(`${this.urlBase}/landing`);
   }
 
+  public obtenerPorId(id: number): Observable<PeliculaDTO> {
+    return this.http.get<PeliculaDTO>(`${this.urlBase}/${id}`);
+  }
+
   public crearGet(): Observable<PeliculasPostGetDTO> {
     return this.http.get<PeliculasPostGetDTO>(`${this.urlBase}/postget`);
   }
@@ -34,6 +38,10 @@ export class PeliculasService {
   public actualizar(id: number, pelicula: PeliculaCreacionDTO) {
     const formData = this.construirFormData(pelicula);
     return this.http.put(`${this.urlBase}/${id}`, formData);
+  }
+
+  public borrar(id: number) {
+    return this.http.delete(`${this.urlBase}/${id}`);
   }
 
   private construirFormData(pelicula: PeliculaCreacionDTO): FormData {
