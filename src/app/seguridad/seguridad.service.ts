@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 import { CredencialesUsuarioDTO, RespuestaAutenticacionDTO } from './seguridad';
 import { Observable, tap } from 'rxjs';
 
@@ -11,7 +11,7 @@ export class SeguridadService {
   constructor() {}
 
   private http = inject(HttpClient);
-  private urlBase = environment.apiURL;
+  private urlBase = environment.apiURL + "/usuarios";
   private readonly llaveToken = 'token';
   private readonly llaveExpiracion = 'token-expiracion';
 
