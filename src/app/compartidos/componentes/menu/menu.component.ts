@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 import { AutorizadoComponent } from "../../../seguridad/autorizado/autorizado.component";
+import { AutocompleteActoresComponent } from "../../../actores/autocomplete-actores/autocomplete-actores.component";
+import { SeguridadService } from '../../../seguridad/seguridad.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,5 +14,5 @@ import { AutorizadoComponent } from "../../../seguridad/autorizado/autorizado.co
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-
+  seguridadService = inject(SeguridadService);
 }

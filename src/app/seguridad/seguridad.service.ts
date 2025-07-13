@@ -11,7 +11,7 @@ export class SeguridadService {
   constructor() {}
 
   private http = inject(HttpClient);
-  private urlBase = environment.apiURL + "/usuarios";
+  private urlBase = environment.apiURL + '/usuarios';
   private readonly llaveToken = 'token';
   private readonly llaveExpiracion = 'token-expiracion';
 
@@ -40,6 +40,17 @@ export class SeguridadService {
           this.guardarToken(respuestaAutenticacion)
         )
       );
+  }
+
+  obtenerCampoJWT(campo: string): string {
+    const token = localStorage.getItem(this.llaveToken);
+
+    if (!token) {
+      return '';
+    }
+
+    var dataToken = JSON.parse(atob(token.split('.')[1]));
+    return dataToken[campo];
   }
 
   guardarToken(respuestaAutenticacion: RespuestaAutenticacionDTO) {
