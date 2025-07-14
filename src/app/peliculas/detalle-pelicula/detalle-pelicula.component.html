@@ -11,8 +11,13 @@
     >
     }
   </mat-chip-listbox>
-  | {{ pelicula.fechaLanzamiento.toDateString() }} | Promedio: 0.0 | Tu voto:
-  0.0
+  | {{ pelicula.fechaLanzamiento.toDateString() }} | Promedio:
+  {{ pelicula.promedioVoto.toFixed(1) }} | Tu voto:
+  <app-rating
+    [maximoRating]="5"
+    (votado)="puntuar($event)"
+    [ratingSeleccionado]="pelicula.votoUsuario"
+  ></app-rating>
 
   <div style="display: flex">
     <span style="display: inline-block; margin-right: 1rem">
@@ -50,17 +55,15 @@
       }
     </div>
   </div>
+  } @if (coordenadas.length > 0) {
+  <div>
+    <h2>Mostrándose en los siguientes cines</h2>
+    <app-mapa
+      [coordenadasIniciales]="coordenadas"
+      [soloLectura]="true"
+    ></app-mapa>
+  </div>
   }
-
-  @if (coordenadas.length > 0) {
-    <div>
-        <h2>Mostrándose en los siguientes cines</h2>
-        <app-mapa [coordenadasIniciales]="coordenadas" [soloLectura]="true"></app-mapa>
-    </div>
-  }
-
-
-
 </div>
 } @else {
 <app-cargando></app-cargando>
