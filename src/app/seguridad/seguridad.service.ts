@@ -15,6 +15,10 @@ export class SeguridadService {
   private readonly llaveToken = 'token';
   private readonly llaveExpiracion = 'token-expiracion';
 
+  obtenerToken(): string | null {
+    return localStorage.getItem(this.llaveToken); 
+  }
+
   registrar(
     credenciales: CredencialesUsuarioDTO
   ): Observable<RespuestaAutenticacionDTO> {
