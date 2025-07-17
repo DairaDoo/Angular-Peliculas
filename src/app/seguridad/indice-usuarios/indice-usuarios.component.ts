@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-indice-usuarios',
-  imports: [RouterLink, MatButtonModule, MatTableModule, ListadoGenericoComponent, MatPaginatorModule, SweetAlert2Module],
+  imports: [MatButtonModule, MatTableModule, ListadoGenericoComponent, MatPaginatorModule, SweetAlert2Module],
   templateUrl: './indice-usuarios.component.html',
   styleUrl: './indice-usuarios.component.css'
 })
@@ -57,4 +57,3 @@ export class IndiceUsuariosComponent {
     })
   }
 }
- 
