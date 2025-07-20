@@ -9,9 +9,10 @@ describe('IndiceEntidadComponent', () => {
   beforeEach(async () => {
     const mockIServicioCRUD = jasmine.createSpyObj<
       IServicioCRUD<object, object>
-    >('IServicioCRUD', ['obtenerPaginado']);
+    >('IServicioCRUD', ['obtenerPaginado', 'borrar']);
 
     mockIServicioCRUD.obtenerPaginado.and.returnValue(of());
+    mockIServicioCRUD.borrar.and.returnValue(of({})); // aca pasamos un objeto vacío como respuesta
 
     await TestBed.configureTestingModule({
       imports: [IndiceEntidadComponent, RouterModule.forRoot([])],
@@ -26,4 +27,17 @@ describe('IndiceEntidadComponent', () => {
     const componente = fixture.componentInstance;
     expect(componente).toBeTruthy();
   });
+
+  it('Debe de colocar la página igual a 1 cuando borrar sea llamada', () => {
+    const fixture = TestBed.createComponent(IndiceEntidadComponent);
+    const componente = fixture.componentInstance;
+
+    const id = 1;
+    componente.paginacion.pagina = 2; // Simulamos que estamos en la página 2
+
+    componente.borrar(id);
+
+    expect(componente.paginacion.pagina).toBe(1);
+  });
+
 });
